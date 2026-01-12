@@ -141,6 +141,7 @@ import * as FooterNavigationCalloutdev from 'src/components/footer-navigation-ca
 import * as floatingdockdev from 'src/components/floating-dock/floating-dock.dev';
 import * as Flexdev from 'src/components/flex/Flex.dev';
 import * as CdpCustomerData from 'src/components/customer-data/CdpCustomerData';
+import * as CdpContractData from 'src/components/customer-data/CdpContractData';
 import * as CtaBanner from 'src/components/cta-banner/CtaBanner';
 import * as ContentSdkRichText from 'src/components/content-sdk-rich-text/ContentSdkRichText';
 import * as ContainerFullWidth from 'src/components/container/container-full-width/ContainerFullWidth';
@@ -310,6 +311,7 @@ export const componentMap = new Map<string, NextjsContentSdkComponent>([
   ['floating-dock', { ...floatingdockdev }],
   ['Flex', { ...Flexdev }],
   ['CdpCustomerData', { ...CdpCustomerData }],
+  ['CdpContractData', { ...CdpContractData }],
   ['CtaBanner', { ...CtaBanner }],
   ['ContentSdkRichText', { ...ContentSdkRichText }],
   ['ContainerFullWidth', { ...ContainerFullWidth }],

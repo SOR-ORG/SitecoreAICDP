@@ -2,7 +2,6 @@ import { RichText as ContentSdkRichText, Field } from '@sitecore-content-sdk/nex
 import { cn } from '@/lib/utils';
 import { NoDataFallback } from '@/utils/NoDataFallback';
 import { ComponentProps } from '@/lib/component-props';
-import { getGuestId } from '@sitecore-cloudsdk/core/browser';
 
 /**
  * Model used for Sitecore Component integration
@@ -17,7 +16,6 @@ interface CdpCustomerDataFields {
 export const Default: React.FC<cdpCustomerDataBlockProps> = (props) => {
   const { fields } = props;
 
-  const guestID = getGuestId();
   const text = props.fields ? (
     <ContentSdkRichText field={props.fields.text} />
   ) : (
@@ -31,7 +29,7 @@ export const Default: React.FC<cdpCustomerDataBlockProps> = (props) => {
           className={cn('component cdpCustomerData', props.params.styles?.trimEnd())}
           id={id ? id : undefined}
         >
-          <div className="component-content">GuestID: {guestID}.   {text}</div>
+          <div className="component-content">{text}</div>
         </div>
       </>
     );
