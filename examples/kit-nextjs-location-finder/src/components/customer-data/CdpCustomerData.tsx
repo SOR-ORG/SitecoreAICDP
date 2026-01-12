@@ -7,14 +7,14 @@ import { getGuestId } from '@sitecore-cloudsdk/core/browser';
 /**
  * Model used for Sitecore Component integration
  */
-type RichTextBlockProps = ComponentProps & RichTextFields;
+type cdpCustomerDataBlockProps = ComponentProps & CdpCustomerDataFields;
 
-interface RichTextFields {
+interface CdpCustomerDataFields {
   fields: {
     text: Field<string>;
   };
 }
-export const Default: React.FC<RichTextBlockProps> = (props) => {
+export const Default: React.FC<cdpCustomerDataBlockProps> = (props) => {
   const { fields } = props;
 
   const guestID = getGuestId();
@@ -28,7 +28,7 @@ export const Default: React.FC<RichTextBlockProps> = (props) => {
     return (
       <>
         <div
-          className={cn('component rich-text', props.params.styles?.trimEnd())}
+          className={cn('component cdpCustomerData', props.params.styles?.trimEnd())}
           id={id ? id : undefined}
         >
           <div className="component-content">GuestID: {guestID}.   {text}</div>
