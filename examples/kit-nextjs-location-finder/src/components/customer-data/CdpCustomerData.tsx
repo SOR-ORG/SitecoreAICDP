@@ -1,38 +1,52 @@
-import { RichText as ContentSdkRichText, Field } from '@sitecore-content-sdk/nextjs';
-import { cn } from '@/lib/utils';
-import { NoDataFallback } from '@/utils/NoDataFallback';
-import { ComponentProps } from '@/lib/component-props';
+'use client';
 
-/**
- * Model used for Sitecore Component integration
- */
-type cdpCustomerDataBlockProps = ComponentProps & CdpCustomerDataFields;
+import React, { JSX, useEffect, useState } from 'react'
+import { Field, RichText as ContentSdkRichText } from '@sitecore-content-sdk/nextjs';
+import { ComponentProps } from 'lib/component-props';
 
-interface CdpCustomerDataFields {
-  fields: {
-    text: Field<string>;
-  };
+interface Fields {
+  Text: Field<string>;
 }
-export const Default: React.FC<cdpCustomerDataBlockProps> = (props) => {
-  const { fields } = props;
 
-  const text = props.fields ? (
-    <ContentSdkRichText field={props.fields.text} />
-  ) : (
-    <span className="is-empty-hint">Rich text</span>
-  );
-  const id = props.params.RenderingIdentifier;
-  if (fields) {
-    return (
-      <>
-        <div
-          className={cn('component cdpCustomerData', props.params.styles?.trimEnd())}
-          id={id ? id : undefined}
-        >
-          <div className="component-content">{text}</div>
-        </div>
-      </>
-    );
-  }
-  return <NoDataFallback componentName="Rich Text Block" />;
+export type CdpCustomerDataProps = ComponentProps & {
+  fields: Fields;
 };
+
+export const Default = ({ params, fields }: CdpCustomerDataProps): JSX.Element => {
+  const { RenderingIdentifier, styles } = params;
+   const [guestID, setGuestID] = useState<string | null>(null);
+
+  useEffect(() => {
+      let mounted = true;
+      (async () => {
+        try {
+          const mod = await import('@sitecore-cloudsdk/core/browser');
+          const id = await mod.getGuestId(); // Promise<string | undefined>
+          if (mounted) setGuestID(id ?? null);
+        } catch (e) {
+          console.error('Failed to get guest ID:', e);
+        }
+      })();
+      return () => {
+        mounted = false;
+      };
+    }, []);
+
+  return (
+    <div className={`component CdpCustomerData ${styles}`} id={RenderingIdentifier}>
+      <div className="component-content">
+        {fields ? (
+          <ContentSdkRichText field={fields.Text} />
+        ) : (
+          <span className="is-empty-hint">Rich text</span>
+        )}
+        <span>Customer data guestID: {guestID ?? '— (client-only)'}</span>
+      </div>
+    </div>
+  );
+};
+
+
+
+
+
