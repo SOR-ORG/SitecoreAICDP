@@ -90,6 +90,8 @@ import * as ZipcodeSearchFormdev from 'src/components/forms/zipcode/ZipcodeSearc
 import * as SubmitInfoFormdev from 'src/components/forms/submitinfo/SubmitInfoForm.dev';
 import * as EmailSignupFormdev from 'src/components/forms/email/EmailSignupForm.dev';
 import * as floatingdockdev from 'src/components/floating-dock/floating-dock.dev';
+import * as CdpCustomerData from 'src/components/customer-data/CdpCustomerData';
+import * as CdpContractData from 'src/components/customer-data/CdpContractData';
 import * as Carousel from 'src/components/carousel/Carousel';
 import * as cardspotlightdev from 'src/components/card-spotlight/card-spotlight.dev';
 import * as ArticleHeader from 'src/components/article-header/ArticleHeader';
@@ -188,6 +190,8 @@ export const componentMap = new Map<string, NextjsContentSdkComponent>([
   ['SubmitInfoForm', { ...SubmitInfoFormdev }],
   ['EmailSignupForm', { ...EmailSignupFormdev }],
   ['floating-dock', { ...floatingdockdev }],
+  ['CdpCustomerData', { ...CdpCustomerData }],
+  ['CdpContractData', { ...CdpContractData }],
   ['Carousel', { ...Carousel }],
   ['card-spotlight', { ...cardspotlightdev }],
   ['ArticleHeader', { ...ArticleHeader }],
