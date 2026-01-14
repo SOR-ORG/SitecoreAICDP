@@ -60,6 +60,7 @@
     "@radix-ui/themes": "^3.2.1",
     "@sitecore-cloudsdk/core": "^0.5.4",
     "@sitecore-cloudsdk/events": "^0.5.4",
+    "@sitecore-cloudsdk/personalize": "^0.5.8",
     "@sitecore-content-sdk/nextjs": "^1.0.0",
     "@tailwindcss/cli": "^4.1.11",
     "@types/google-libphonenumber": "^7.4.30",
@@ -118,8 +119,8 @@
     "eslint-config-next": "15.5.0",
     "eslint-plugin-yaml": "^0.5.0",
     "npm-run-all2": "^8.0.4",
-    "tailwindcss": "^4",
     "prettier": "3.6.2",
+    "tailwindcss": "^4",
     "ts-node": "^10.9.2",
     "tsconfig-paths": "^4.2.0",
     "typescript": "~5.8.3"
