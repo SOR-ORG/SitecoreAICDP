@@ -1,124 +1,95 @@
 'use client';
 
-import { useState } from 'react';
-import { useForm } from 'react-hook-form';
-import { z } from 'zod';
-import { zodResolver } from '@hookform/resolvers/zod';
-import { Button } from '@/components/ui/button';
-import {
-  Form,
-  FormField,
-  FormItem,
-  FormLabel,
-  FormControl,
-  FormMessage,
-} from '@/components/ui/form';
-import { Input } from '@/components/ui/input';
-import { Text, Field } from '@sitecore-content-sdk/nextjs';
-import { SuccessCompact } from '../success/success-compact.dev';
-import { EnumValues } from '@/enumerations/generic.enum';
-import { ButtonVariants } from '@/enumerations/ButtonStyle.enum';
+import React, { ChangeEvent, FormEvent, JSX, useState } from 'react';
+import { Field, RichText as ContentSdkRichText, LinkField, Link } from '@sitecore-content-sdk/nextjs';
+import { ComponentProps } from 'lib/component-props';
 
-interface LoginFormProps {
-  fields?: {
-    emailLabel?: Field<string>;
-    emailPlaceholder?: Field<string>;
-    emailErrorMessage?: Field<string>;
-    buttonText?: Field<string>;
-    successMessage?: Field<string>;
-    buttonVariant?: EnumValues<typeof ButtonVariants>;
-  };
-  className?: string;
+interface Fields {
+  Link: LinkField;
+  Email: Field<string>;
 }
 
-const formSchema = z.object({
-  email: z
-    .string()
-    .nonempty({
-      message: 'Email is required',
-    })
-    .email({
-      message: 'Please enter a valid email address',
-    }),
-});
-
-const updateSchemaWithDictionary = (fields: LoginFormProps['fields']) => {
-  return formSchema.extend({
-    // Update the schema with the dictionary values here
-    email: z.string().email({
-      message: fields?.emailErrorMessage?.value || 'Please enter a valid email address',
-    }),
-  });
+export type loginProps = ComponentProps & {
+  params: { [key: string]: string };
+  fields: Fields;
 };
 
-export const Default: React.FC<LoginFormProps> = (props) => {
-  const [isSubmitted, setIsSubmitted] = useState(false);
-  const schemaWithDiction = updateSchemaWithDictionary(props.fields);
-  const form = useForm<z.infer<typeof schemaWithDiction>>({
-    resolver: zodResolver(schemaWithDiction),
-    defaultValues: {
-      email: '',
-    },
-  });
+export const testLoginAccounts = [
+  {
+    email: 'brie.larson@gmail.com',
+  },
+  {
+    email: 'scott.ryan@gmail.com',
+  },
+  {
+    email: 'pedro.pascal@gmail.com',
+  },
+  {
+    email: 'ivy.george@gmail.com',
+  },
+];
 
-  // arg - values: z.infer<typeof formSchema>
-  function onSubmit() {
-    setIsSubmitted(true);
-    setTimeout(() => {
-      setIsSubmitted(false);
-    }, 3000);
-  }
+export const Default = ({ params, fields }: loginProps): JSX.Element => {
+  const { RenderingIdentifier, styles } = params;
 
-  // Data assignments
-  const emailLabel = props.fields?.emailLabel?.value || 'Email';
-  const emailPlaceholder = props.fields?.emailPlaceholder?.value || 'Enter your email address';
-  const buttonText = props.fields?.buttonText?.value || 'Finish Booking';
-  const successMessage =
-    props.fields?.successMessage?.value || 'Got it. Thank you! We will be in touch shortly.';
-  const btnVariant = props.fields?.buttonVariant || 'default';
+   const emailText = fields ? (
+    <ContentSdkRichText field={fields.Email} />
+  ) : (
+    <span className="is-empty-hint">Email :</span>
+  );
 
-  if (isSubmitted) {
-    return <SuccessCompact successMessage={successMessage} />;
-  }
+  // State to store form input values
+  const [formData, setFormData] = useState({ email: '' });
 
-  // Repeated classes
-  const formItemClasses = 'relative space-y-2';
-  const labelClasses = 'block text-foreground text-left';
-  const inputClasses = 'rounded-md px-2 py-3 border-foreground bg-background text-foreground';
-  const errorClasses = 'absolute -translate-y-[5px] text-[#ff5252]';
+    // Event handler for form input changes
+  const handleInputChange = (e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+    const { name, value } = e.target;
+    setFormData({
+      ...formData,
+      [name]: value,
+    });
+  };
+
+  // Event handler for form submission
+  const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    // Perform any action you need with the form data (e.g., send it to a server)
+    console.log("loggedIn")
+  };
 
   return (
-    <Form {...form}>
-      <form
-        onSubmit={form.handleSubmit(onSubmit)}
-        className="w-full max-w-[750px] space-y-9 group-[.position-center]:mx-auto group-[.position-right]:ml-auto"
-      >
-    
-        <FormField
-          control={form.control}
-          name="email"
-          render={({ field }) => (
-            <FormItem className={formItemClasses}>
-              <FormLabel className={labelClasses}>{emailLabel}</FormLabel>
-              <FormControl>
-                <Input
+    <div className={`component login ${styles}`} id={RenderingIdentifier}>
+      <div className="component-content">
+
+          <form className="login-form" onSubmit={handleSubmit}>
+            <div className="login-form-group">
+              <div className="login-email">
+                <label htmlFor="email">{emailText} </label>
+                <input
+                  list="emailList"
                   type="email"
-                  placeholder={emailPlaceholder}
-                  className={inputClasses}
-                  {...field}
+                  id="email"
+                  name="email"
+                  value={formData.email}
+                  onChange={handleInputChange}
+                  required
                 />
-              </FormControl>
-              <FormMessage className={errorClasses} />
-            </FormItem>
-          )}
-        />
-        <div>
-          <Button className="mt-4" type="submit" variant={btnVariant}>
-            <Text field={{ value: buttonText }} />
-          </Button>
+              </div>
+              <datalist id="emailList">
+                {testLoginAccounts.map((item, index) => (
+                  <option value={item.email} key={index}></option>
+                ))}
+              </datalist>
+            </div>
+            <div className="login-form-group">
+              <button className="login-button" type="submit">
+                <Link field={fields.Link} />
+              </button>
+            </div>
+          </form>
         </div>
-      </form>
-    </Form>
+      </div>
   );
 };
+
 
