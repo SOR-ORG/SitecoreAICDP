@@ -67,7 +67,6 @@ export type guestDetailsResponse = {
 
 export async function getGuestDetails() {
 
-  const mod = await import('@sitecore-cloudsdk/core/browser');
   const per = await import('@sitecore-cloudsdk/personalize/browser');
   
   const personalizationData = {
@@ -79,4 +78,22 @@ export async function getGuestDetails() {
   console.log('response:', response);
 
   return response;
+}
+
+export async function sendIdentityEvent(email:string) {
+
+  const e = await import('@sitecore-cloudsdk/events/browser');
+  
+  const eventData = {
+    email,
+    identifiers: [
+      {
+        id: email,
+        provider: "email",
+      },
+    ]
+  };
+
+  e.identity(eventData);
+  
 }
