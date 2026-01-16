@@ -65,6 +65,14 @@ export type guestDetailsResponse = {
   unknown: boolean;
 };
 
+export type planEstimateResponse = {
+  currentPlan: string;
+  predictedAnnualUsage: string;
+  currentPlanEstimatedAnnualCost: string;
+  newPlanEstimateAnnualCost: string;
+  description: string;
+};
+
 export async function getGuestDetails() {
 
   const per = await import('@sitecore-cloudsdk/personalize/browser');
@@ -75,7 +83,25 @@ export async function getGuestDetails() {
   };
   
   const response = (await per.personalize(personalizationData)) as guestDetailsResponse;
-  console.log('response:', response);
+  console.log('guest details response:', response);
+
+  return response;
+}
+
+export async function getPlanEstimate(planToCompare:string) {
+
+  const per = await import('@sitecore-cloudsdk/personalize/browser');
+  
+  const personalizationData = {
+    channel: "WEB",
+    friendlyId: 'plan_estimate',
+    params: {
+      planToCompare,
+    },
+  };
+  
+  const response = (await per.personalize(personalizationData)) as planEstimateResponse;
+  console.log('plan estimate response:', response);
 
   return response;
 }

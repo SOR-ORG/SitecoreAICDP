@@ -5,7 +5,7 @@ import { Field, RichText as ContentSdkRichText } from '@sitecore-content-sdk/nex
 import { ComponentProps } from 'lib/component-props';
 import { LayoutServicePageState, SitecoreProviderReactContext } from '@sitecore-content-sdk/nextjs';
 import { guestDetailsResponse, getGuestDetails } from 'components/lib/datalayerhelper';
-import { dateFormatter, formatCurrency, normalizeSplit, normalizeTariffToPercent, formatPercent} from 'components/lib/utils'
+import { dateFormatter, formatCurrency, normalizeSplit, formatPercent} from 'components/lib/utils'
 
 interface Fields {
   Text: Field<string>;
