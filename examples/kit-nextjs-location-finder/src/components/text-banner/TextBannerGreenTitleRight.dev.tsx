@@ -7,7 +7,7 @@ import { TextBannerProps } from './text-banner.props';
 import { Default as AnimatedSection } from '@/components/animated-section/AnimatedSection.dev';
 import { NoDataFallback } from '@/utils/NoDataFallback';
 
-export const TextBannerBlueTitleRight: React.FC<TextBannerProps> = (props) => {
+export const TextBannerGreenTitleRight: React.FC<TextBannerProps> = (props) => {
   const { fields, isPageEditing } = props;
   const { heading, description } = fields ?? {};
 

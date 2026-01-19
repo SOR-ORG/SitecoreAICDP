@@ -9,7 +9,7 @@ import { Default as AnimatedSection } from '@/components/animated-section/Animat
 import { NoDataFallback } from '@/utils/NoDataFallback';
 
 /* Text Banner 01 appearance:
- * Blue background, content stacked vertically
+ * Green background, content stacked vertically
  * Title left-aligned
  * Description right-aligned
  */

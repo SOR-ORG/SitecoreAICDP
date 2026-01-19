@@ -1,5 +1,4 @@
 import { clsx, type ClassValue } from 'clsx';
-import { initialize } from 'next/dist/server/lib/render-server';
 import { twMerge } from 'tailwind-merge';
 
 export function cn(...inputs: ClassValue[]) {

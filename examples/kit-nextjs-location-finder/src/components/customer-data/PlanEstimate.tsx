@@ -15,15 +15,19 @@ export type PlanEstimateDataProps = ComponentProps & {
   fields: Fields;
 };
 
+
+
 export const Default = ({ params, fields }: PlanEstimateDataProps): JSX.Element => {
   const { RenderingIdentifier, styles } = params;
 
   const { page } = React.useContext(SitecoreProviderReactContext);
   const { pageState } = page.layout.sitecore.context;
 
-  console.log("'",pageState, "'- -'", LayoutServicePageState.Preview,"'");
+  console.log("'",page, "'- -'", LayoutServicePageState.Preview,"'");
 
   const planToCompare = fields.PlanToCompare ? (fields.PlanToCompare) : ('Green Energy Plan');
+
+
 
   const [currentPlan, setCurrentPlan] = useState<string | null>('');
   const [currentPlanEstimatedAnnualCost, setCurrentPlanEstimatedAnnualCost] = useState<string>('');
@@ -35,7 +39,6 @@ export const Default = ({ params, fields }: PlanEstimateDataProps): JSX.Element 
   useEffect(() => {
       (async () => {
         try {
-
           const response = await getPlanEstimate (planToCompare) as planEstimateResponse; 
 
           if (response) {
@@ -169,7 +172,6 @@ export const Default = ({ params, fields }: PlanEstimateDataProps): JSX.Element 
     </div>
   );
 };
-
 
 
 

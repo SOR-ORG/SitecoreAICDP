@@ -9,7 +9,7 @@ import { EditableButton } from '@/components/button-component/ButtonComponent';
 import { PageHeaderProps } from './page-header.props';
 import { Default as ImageWrapper } from '@/components/image/ImageWrapper.dev';
 
-export const PageHeaderBlueText: React.FC<PageHeaderProps & { isPageEditing: boolean }> = (
+export const PageHeaderGreenText: React.FC<PageHeaderProps & { isPageEditing: boolean }> = (
   props
 ) => {
   const { fields, isPageEditing } = props;
@@ -56,7 +56,7 @@ export const PageHeaderBlueText: React.FC<PageHeaderProps & { isPageEditing: boo
       >
         <div className="@container/headerwrapper">
           <div className="@lg/headerwrapper:pt-20 @lg/headerwrapper:pb-16 @xl/headerwrapper:mx-auto @lg/headerwrapper:max-w-screen-xl @xl/headerwrapper:group-[.container--full-bleed]:px-8 @sm/headerwrapper:px-5 @md/headerwrapper:px-10 @lg/headerwrapper:px-24 @xl/headerwrapper:py-32 @lg/headerwrapper:py-22 @sm/headerwrapper:py-12 @sm/headerwrapper:min-h-[575px] @sm/headerwrapper:group-[.container--full-bleed]:px-4 relative mx-auto w-full">
-            {/* Blue Box */}
+            {/* Green Box */}
             <div className="@container/headercontent bg-primary text-primary-foreground relative z-10 max-w-[700px] p-10">
               {/* Left Line */}
               <div className="absolute bottom-0 left-0 top-0">

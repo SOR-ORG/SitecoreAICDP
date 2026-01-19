@@ -5,8 +5,8 @@ import type { GlobalFooterProps } from './global-footer.props';
 import { GlobalFooterDefault } from './GlobalFooterDefault.dev';
 import { GlobalFooterBlackCompact } from './GlobalFooterBlackCompact.dev';
 import { GlobalFooterBlackLarge } from './GlobalFooterBlackLarge.dev';
-import { GlobalFooterBlueCentered } from './GlobalFooterBlueCentered.dev';
-import { GlobalFooterBlueCompact } from './GlobalFooterBlueCompact.dev';
+import { GlobalFooterGreenCentered } from './GlobalFooterGreenCentered.dev';
+import { GlobalFooterGreenCompact } from './GlobalFooterGreenCompact.dev';
 import { useTranslations } from 'next-intl';
 import { dictionaryKeys } from '@/variables/dictionary';
 // Data source checks are done in the child components
@@ -55,7 +55,7 @@ export const BlackLargeVariant: React.FC<GlobalFooterProps> = (props) => {
   return <GlobalFooterBlackLarge {...props} isPageEditing={isEditing} />;
 };
 
-export const BlueCenteredVariant: React.FC<GlobalFooterProps> = (props) => {
+export const GreenCenteredVariant: React.FC<GlobalFooterProps> = (props) => {
   const { isEditing } = props.page.mode;
   const t = useTranslations();
   const dictionary = {
@@ -66,10 +66,10 @@ export const BlueCenteredVariant: React.FC<GlobalFooterProps> = (props) => {
   };
   props.fields.dictionary = dictionary;
 
-  return <GlobalFooterBlueCentered {...props} isPageEditing={isEditing} />;
+  return <GlobalFooterGreenCentered {...props} isPageEditing={isEditing} />;
 };
 
-export const BlueCompactVariant: React.FC<GlobalFooterProps> = (props) => {
+export const GreenCompactVariant: React.FC<GlobalFooterProps> = (props) => {
   const { isEditing } = props.page.mode;
   const t = useTranslations();
   const dictionary = {
@@ -80,5 +80,5 @@ export const BlueCompactVariant: React.FC<GlobalFooterProps> = (props) => {
   };
   props.fields.dictionary = dictionary;
 
-  return <GlobalFooterBlueCompact {...props} isPageEditing={isEditing} />;
+  return <GlobalFooterGreenCompact {...props} isPageEditing={isEditing} />;
 };

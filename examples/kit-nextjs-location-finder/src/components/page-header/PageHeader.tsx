@@ -2,15 +2,15 @@
 import type React from 'react';
 import type { PageHeaderProps } from './page-header.props';
 import { PageHeaderDefault } from './PageHeaderDefault.dev';
-import { PageHeaderBlueText } from './PageHeaderBlueText.dev';
+import { PageHeaderGreenText } from './PageHeaderGreenText.dev';
 import { PageHeaderFiftyFifty } from './PageHeaderFiftyFifty.dev';
-import { PageHeaderBlueBackground } from './PageHeaderBlueBackground.dev';
+import { PageHeaderGreenBackground } from './PageHeaderGreenBackground.dev';
 import { PageHeaderCentered } from './PageHeaderCentered.dev';
 
 /* 
   This component is a page header with multiple variants:
   - Default: Shows the header as per the provided design
-  - BlueText: Modified version with blue text styling (to be implemented)
+  - GreenText: Modified version with green text styling (to be implemented)
   - 50-50: Equal width layout for the left and right content (to be implemented)
 */
 
@@ -21,9 +21,9 @@ export const Default: React.FC<PageHeaderProps> = (props) => {
 };
 
 // Variants
-export const BlueText: React.FC<PageHeaderProps> = (props) => {
+export const GreenText: React.FC<PageHeaderProps> = (props) => {
   const { isEditing } = props.page.mode;
-  return <PageHeaderBlueText {...props} isPageEditing={isEditing} />;
+  return <PageHeaderGreenText {...props} isPageEditing={isEditing} />;
 };
 
 export const FiftyFifty: React.FC<PageHeaderProps> = (props) => {
@@ -31,9 +31,9 @@ export const FiftyFifty: React.FC<PageHeaderProps> = (props) => {
   return <PageHeaderFiftyFifty {...props} isPageEditing={isEditing} />;
 };
 
-export const BlueBackground: React.FC<PageHeaderProps> = (props) => {
+export const GreenBackground: React.FC<PageHeaderProps> = (props) => {
   const { isEditing } = props.page.mode;
-  return <PageHeaderBlueBackground {...props} isPageEditing={isEditing} />;
+  return <PageHeaderGreenBackground {...props} isPageEditing={isEditing} />;
 };
 
 export const Centered: React.FC<PageHeaderProps> = (props) => {
