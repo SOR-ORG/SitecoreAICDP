@@ -16,16 +16,29 @@ export type PlanEstimateDataProps = ComponentProps & {
 };
 
 
+const allowedPlans = [
+  'Time-of-Use (TOU) Energy Plan',
+  'Fixed-Rate Energy Plan',
+  'Green Energy Plan',
+  'Prepaid Energy Plan',
+] as const;
+
+
 
 export const Default = ({ params, fields }: PlanEstimateDataProps): JSX.Element => {
   const { RenderingIdentifier, styles } = params;
 
   const { page } = React.useContext(SitecoreProviderReactContext);
   const { pageState } = page.layout.sitecore.context;
+  const pageName = page.layout.sitecore.route?.displayName; 
 
-  console.log("'",page, "'- -'", LayoutServicePageState.Preview,"'");
+  console.log("'",page.mode.isPreview, "'- -'", page.mode.name,"'");
+  console.log("page name: ",pageName);
 
-  const planToCompare = fields.PlanToCompare ? (fields.PlanToCompare) : ('Green Energy Plan');
+  const planToCompare =
+  pageName && allowedPlans.includes(pageName as typeof allowedPlans[number])
+    ? pageName
+    : 'Green Energy Plan';
 
 
 
