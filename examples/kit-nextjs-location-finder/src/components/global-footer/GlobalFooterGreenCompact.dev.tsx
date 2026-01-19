@@ -9,7 +9,7 @@ import { Default as FooterNavigationColumn } from './FooterNavigationColumn.dev'
 import { EditableButton } from '@/components/button-component/ButtonComponent';
 import { AnimatedHoverNav } from '@/components/ui/animated-hover-nav';
 
-export const GlobalFooterBlueCompact: React.FC<GlobalFooterProps> = (props) => {
+export const GlobalFooterGreenCompact: React.FC<GlobalFooterProps> = (props) => {
   const { fields, isPageEditing } = props;
   const { dictionary } = fields;
   const { footerNavLinks, footerCopyright, socialLinks, tagline, emailSubscriptionTitle } =

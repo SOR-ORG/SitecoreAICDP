@@ -2,7 +2,7 @@
 import type { TextBannerProps } from './text-banner.props';
 import { TextBannerDefault } from './TextBannerDefault.dev';
 import { TextBannerTextTop } from './TextBannerTextTop.dev';
-import { TextBannerBlueTitleRight } from './TextBannerBlueTitleRight.dev';
+import { TextBannerGreenTitleRight } from './TextBannerGreenTitleRight.dev';
 
 import { TextBanner01 as TextBannerVariant01 } from './TextBanner01.dev';
 import { TextBanner02 as TextBannerVariant02 } from './TextBanner02.dev';
@@ -30,7 +30,7 @@ export const TextTop: React.FC<TextBannerProps> = (props) => {
   return <TextBannerTextTop {...props} isPageEditing={isEditing} />;
 };
 
-export const BlueTitleRight: React.FC<TextBannerProps> = (props) => {
+export const GreenTitleRight: React.FC<TextBannerProps> = (props) => {
   const { isEditing } = props.page.mode;
-  return <TextBannerBlueTitleRight {...props} isPageEditing={isEditing} />;
+  return <TextBannerGreenTitleRight {...props} isPageEditing={isEditing} />;
 };

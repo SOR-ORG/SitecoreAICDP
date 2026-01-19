@@ -56,7 +56,6 @@ export const Default = ({ params, fields }: loginProps): JSX.Element => {
     e.preventDefault();
     // Perform any action you need with the form data (e.g., send it to a server)
     sendIdentityEvent(formData.email);
-    console.log("loggedIn")
   };
 
   return (
@@ -171,7 +170,7 @@ export const Default = ({ params, fields }: loginProps): JSX.Element => {
           border-color: rgba(255, 255, 255, 0.45);
         }
         .login-input:focus {
-          border-color: #2b78ff;
+          border-color: #578c45;
           box-shadow: 0 0 0 3px rgba(43, 120, 255, 0.25);
           background-color: #0f0f0f;
         }
@@ -181,7 +180,7 @@ export const Default = ({ params, fields }: loginProps): JSX.Element => {
           margin-top: 12px;
         }
 
-        /* Primary CTA: full width blue button */
+        /* Primary CTA: full width green button */
         .login-button {
           width: 100%;
           display: inline-flex;
@@ -189,9 +188,9 @@ export const Default = ({ params, fields }: loginProps): JSX.Element => {
           justify-content: center;
           gap: 8px;
 
-          background-color: #1e74d9;
+          background-color: #578c45;
           color: #fff;
-          border: 1px solid #1e74d9;
+          border: 1px solid #578c45;
           border-radius: 10px;
 
           padding: 14px 18px;
@@ -203,8 +202,8 @@ export const Default = ({ params, fields }: loginProps): JSX.Element => {
             box-shadow 0.15s ease;
         }
         .login-button:hover {
-          background-color: #2b78ff;
-          border-color: #2b78ff;
+          background-color: #578c45;
+          border-color: #578c45;
         }
         .login-button:active {
           transform: translateY(1px);

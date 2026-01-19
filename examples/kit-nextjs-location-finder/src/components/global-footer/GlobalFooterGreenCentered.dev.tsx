@@ -12,7 +12,7 @@ import { EditableButton } from '@/components/button-component/ButtonComponent';
 import { AnimatedHoverNav } from '@/components/ui/animated-hover-nav';
 import { Default as FooterNavigationColumn } from './FooterNavigationColumn.dev';
 
-export const GlobalFooterBlueCentered: React.FC<GlobalFooterProps> = (props) => {
+export const GlobalFooterGreenCentered: React.FC<GlobalFooterProps> = (props) => {
   const { fields, isPageEditing } = props;
   const { dictionary } = fields;
   const { footerNavLinks, footerCopyright, socialLinks, tagline, emailSubscriptionTitle } =
@@ -117,5 +117,5 @@ export const GlobalFooterBlueCentered: React.FC<GlobalFooterProps> = (props) => 
       </footer>
     );
   }
-  return <NoDataFallback componentName="Global Footer - Blue Centered" />;
+  return <NoDataFallback componentName="Global Footer - Green Centered" />;
 };

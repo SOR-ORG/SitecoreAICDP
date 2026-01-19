@@ -82,7 +82,7 @@ export const ImageCarouselFullBleed = (props: ImageCarouselProps) => {
         data-class-change
         data-component="ImageCarouselFullBleed"
       >
-        {/* Blue header section with title */}
+        {/* Green header section with title */}
         <div className={headerWrapperClasses}>
           <div className={headerContentClasses}>
             <AnimatedSection

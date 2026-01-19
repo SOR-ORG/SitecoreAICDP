@@ -10,7 +10,7 @@ import { EditableButton } from '@/components/button-component/ButtonComponent';
 import type { PageHeaderProps } from './page-header.props';
 import { Default as ImageWrapper } from '@/components/image/ImageWrapper.dev';
 
-export const PageHeaderBlueBackground: React.FC<PageHeaderProps & { isPageEditing: boolean }> = (
+export const PageHeaderGreenBackground: React.FC<PageHeaderProps & { isPageEditing: boolean }> = (
   props
 ) => {
   const { fields, isPageEditing } = props;
