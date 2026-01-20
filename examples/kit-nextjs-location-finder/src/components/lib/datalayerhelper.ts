@@ -73,6 +73,31 @@ export type planEstimateResponse = {
   description: string;
 };
 
+export const allowedPlans = [
+  'Time-of-Use (TOU) Energy Plan',
+  'Fixed-Rate Energy Plan',
+  'Green Energy Plan',
+  'Prepaid Energy Plan',
+] as const;
+
+export type AllowedPlan = (typeof allowedPlans)[number];
+
+
+export type PlanEstimateInputPayload =
+  { planToCompare: AllowedPlan } &
+  Partial<{
+    lastYearElectricityUsage: string;       // e.g., "4200 kWh"
+    currentYearElectricityUsage: string;    // e.g., "4200 kWh"
+    currentYearGasUsage: string;            // e.g., "400 therms"
+    lastYearGasUsage: string;               // e.g., "400 therms"
+    currentYearSolarEnergyProduced: string; // e.g., "0 kWh"
+    currentMonthElectricitySplit: string;   // e.g., '{"peak":"50%","offPeak":"50%"}'
+    currentPlan: string;                    // e.g., "Standard Variable"
+    currentPlanCost: number;                // e.g., 1500
+  }>;
+
+
+
 export async function getGuestDetails() {
 
   const per = await import('@sitecore-cloudsdk/personalize/browser');
@@ -88,23 +113,37 @@ export async function getGuestDetails() {
   return response;
 }
 
-export async function getPlanEstimate(planToCompare:string) {
 
+export async function getPlanEstimate(payload: PlanEstimateInputPayload) {
   const per = await import('@sitecore-cloudsdk/personalize/browser');
-  
-  const personalizationData = {
-    channel: "WEB",
-    friendlyId: 'plan_estimate',
-    params: {
-      planToCompare,
-    },
-  };
-  
-  const response = (await per.personalize(personalizationData)) as planEstimateResponse;
-  console.log('plan estimate response:', response);
 
-  return response;
+  // Build params by stripping undefined values
+  const rawParams = {
+    planToCompare: payload.planToCompare,
+    lastYearElectricityUsage: payload.lastYearElectricityUsage,
+    currentYearElectricityUsage: payload.currentYearElectricityUsage,
+    currentYearGasUsage: payload.currentYearGasUsage,
+    lastYearGasUsage: payload.lastYearGasUsage,
+    currentYearSolarEnergyProduced: payload.currentYearSolarEnergyProduced,
+    currentMonthElectricitySplit: payload.currentMonthElectricitySplit,
+    currentPlan: payload.currentPlan,
+    currentPlanCost: payload.currentPlanCost,
+  } as const;
+
+  const params = Object.fromEntries(
+    Object.entries(rawParams).filter(([, v]) => v !== undefined && v !== null)
+  );
+
+  const personalizationData = {
+    channel: 'WEB',
+    friendlyId: 'plan_estimate',
+    params, // only defined values are sent
+  };
+
+  const response = await per.personalize(personalizationData);
+  return response as planEstimateResponse;
 }
+
 
 export async function sendIdentityEvent(email:string) {
 
