@@ -11,9 +11,15 @@ interface Fields {
   Text: Field<string>;
   PlanToCompare: string;
 }
+interface params {
+  [key: string]: any; // eslint-disable-line
+}
 
-export type PlanEstimateDataProps = ComponentProps & {
+
+export interface PlanEstimateDataProps extends ComponentProps {
+  params: params;
   fields: Fields;
+  isPageEditing?: boolean;
 };
 
 export const PlanEstimateDefault = ({ params, fields }: PlanEstimateDataProps): JSX.Element => {

@@ -10,7 +10,6 @@ import { PlanEstimateForm } from './PlanEstimateForm';
 
 // Default display of the component
 export const Default: React.FC<PlanEstimateDataProps> = (props) => {
-  const { isEditing } = props.page.mode;
   const t = useTranslations();
 
   return <PlanEstimateDefault {...props} />;
@@ -18,8 +17,7 @@ export const Default: React.FC<PlanEstimateDataProps> = (props) => {
 
 
 // Variants
-export const PlanEstiamteForm: React.FC<PlanEstimateDataProps> = (props) => {
-  const { isEditing } = props.page.mode;
+export const PlanEstimateFormVariant: React.FC<PlanEstimateDataProps> = (props) => {
   const t = useTranslations();
 
   return <PlanEstimateForm {...props} />;
